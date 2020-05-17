@@ -4,7 +4,7 @@ import time;
 from Classes import *
 from socket import *
 
-userName = "bojan";
+userName = "ivan";
 
 
 def SendToServer(data):

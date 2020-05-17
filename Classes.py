@@ -7,8 +7,26 @@ sizeX = 1260;
 sizeY = 680;
 angleOffset = 90;  # Slike pocinju uspravno
 
-def SendData():
-    return "";
+
+class Message:
+    sep = ":-:";
+
+    def __init__(self, txt="", req="", sen="", rec="", data=""):
+        if txt != '':
+            txt = txt.split(Message.sep);
+            self.request = txt[0];
+            self.sender = txt[1];
+            self.reciever = txt[2];
+            self.data = txt[3];
+        else:
+            self.request = req;
+            self.sender = sen;
+            self.reciever = rec;
+            self.data = data;
+
+    def ToString(self):
+        return self.request + Message.sep + self.sender + Message.sep + self.reciever + Message.sep + self.data;
+
 
 class Player:
     maxHealth = 100;
@@ -17,19 +35,19 @@ class Player:
     angle = 0;
     x = 0;
     y = 0;
-    movement = V2(0, 0);
-    pos = V2(0, 0);
+    movement = zeroVec;
+    pos = zeroVec;
     bullets = [];
     rateOfFire = 5;
     rateCounter = 0;
-
+    name = "";
     def __init__(self, name, canvas):
         self.playerImages = [];
         for i in range(0, 36):
             self.playerImages.append(PhotoImage(file='playerRotated/' + str(i) + '.png'));
         for i in range(0, 5):
             self.bullets.append(Bullet(canvas))
-        self.name = name;
+        Player.name = name;
         self.currentHealth = self.maxHealth;
         self.canvas = canvas;
         self.pos = V2(random.randint(self.size, sizeX - self.size), random.randint(self.size, sizeY - self.size))
@@ -48,7 +66,10 @@ class Player:
     def Controll(self, pressedKeys):
         move = 0;
         if pressedKeys.__len__() != 0:
-            self.change = True;
+            if ' ' in pressedKeys and pressedKeys.__len__() == 1:
+                self.change = False;
+            else:
+                self.change = True;
             if 'w' in pressedKeys:
                 move = self.speed;
             elif 's' in pressedKeys:
@@ -86,11 +107,11 @@ class Player:
             for b in self.bullets:
                 if not b.draw:
                     b.Reset(self.pos, self.angle);
-                    self.bulletSend = b.Serialize();
+                    self.bulletSend = b.Serialize().ToString();
                     return
 
     def Serialize(self):
-        return "POS:-:" + str(self.pos.x) + ":" + str(self.pos.y) + ":" + str(self.angle);
+        return Message("","PLAYERINFO",self.name,"all",str(self.pos.x) + ":" + str(self.pos.y) + ":" + str(self.angle))
 
 
 class Bullet:
@@ -121,7 +142,7 @@ class Bullet:
                 self.draw = False;
 
     def Serialize(self):
-        return str(self.pos.x)+":"+ str(self.pos.y)+":"+str(self.movement.x) +":"+str(self.movement.y);
+        return Message("","BULLETINFO",Player.name,"all",str(self.pos.x) + ":" + str(self.pos.y) + ":" + str(self.movement.x) + ":" + str(self.movement.y))
 
 
 class RemotePlayer:
@@ -133,7 +154,7 @@ class RemotePlayer:
         for i in range(0, 36):
             RemotePlayer.remotePlayerImages.append(PhotoImage(file='remoteRotated/' + str(i) + '.png'));
 
-    def __init__(self, canvas, txt):
+    def __init__(self, canvas, msg):
         self.bullets = [];
         for i in range(0, 5):
             self.bullets.append(Bullet(canvas))
@@ -144,7 +165,7 @@ class RemotePlayer:
         self.canvas = canvas;
         self.bullets = [];
         self.movement = zeroVec;
-        self.Set(txt);
+        self.Set(msg);
         self.image = self.canvas.create_image(self.pos.AsArgs(), image=RemotePlayer.remotePlayerImages[0]);
 
     def Update(self, txt):
@@ -153,10 +174,10 @@ class RemotePlayer:
         for b in self.bullets:
             b.Update();
 
-    def Set(self, txt):
-        data = txt.split(":-:");
-        x = float(data[1].split(":")[0]);
-        y = float(data[1].split(":")[1]);
+    def Set(self, msg):
+        data = msg.data;
+        x = float(data.split(":")[0]);
+        y = float(data.split(":")[1]);
         newPos = V2(x, y);
         if self.pos != newPos:
             self.movement = newPos - self.pos;
@@ -165,8 +186,8 @@ class RemotePlayer:
         else:
             self.movement = zeroVec;
             self.changePos = False;
-        newAngle = int(data[1].split(":")[2]);
-        if self.angle!=newAngle:
+        newAngle = int(data.split(":")[2]);
+        if self.angle != newAngle:
             self.changeAngle = True
             self.angle = newAngle;
         else:
@@ -190,11 +211,10 @@ class RemoteBullet:
         self.pos = zeroVec;
         self.circle = self.canvas.create_oval(-100, -100, -100, -100, fill=self.color);
 
-    def Reset(self, txt):
-        data = str(txt);
-        data = data.split(":");
-        self.pos = V2(float(data[0]),float(data[1]));
-        self.movement = V2(float(data[2]),float(data[3]));
+    def Reset(self, msg):
+        data = msg.data.split(":");
+        self.pos = V2(float(data[0]), float(data[1]));
+        self.movement = V2(float(data[2]), float(data[3]));
         coord = CentredCircle(self.pos.x, self.pos.y, 10);
         self.circle = self.canvas.create_oval(coord, fill=self.color);
         self.draw = True;
