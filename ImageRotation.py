@@ -1,6 +1,6 @@
 from PIL import Image
 
-basewidth = 100;
+basewidth = 80;
 img = Image.open('playerTank.png')
 wpercent = (basewidth/float(img.size[0]))
 hsize = int((float(img.size[1])*float(wpercent)))

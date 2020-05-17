@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95d4b57a-e7ee-4a42-b063-717642baa014" name="Default Changelist" comment="" />
+    <list default="true" id="95d4b57a-e7ee-4a42-b063-717642baa014" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageRotation.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageRotation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/20.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/21.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/23.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/24.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/25.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/26.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/27.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/28.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/29.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/30.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/31.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/33.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/34.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/35.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/playerRotated/9.png" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +56,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1c23K5X21wZ91qvpOhf0KPtY8e1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -51,6 +97,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="ImageRotation (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TankGame" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ImageRotation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="ImageRotation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TankGame" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -75,6 +142,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.Game" />
+        <item itemvalue="Python.ImageRotation (1)" />
         <item itemvalue="Python.ImageRotation" />
       </list>
     </recent_temporary>
@@ -93,22 +161,22 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1345" height="211" key="GridCell.Tab.0.bottom" timestamp="1589733216062">
+    <state width="1345" height="106" key="GridCell.Tab.0.bottom" timestamp="1589741387571">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="211" key="GridCell.Tab.0.bottom/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589733216062" />
-    <state width="1345" height="211" key="GridCell.Tab.0.center" timestamp="1589733216062">
+    <state width="1345" height="106" key="GridCell.Tab.0.bottom/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589741387571" />
+    <state width="1345" height="106" key="GridCell.Tab.0.center" timestamp="1589741387571">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="211" key="GridCell.Tab.0.center/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589733216062" />
-    <state width="1345" height="211" key="GridCell.Tab.0.left" timestamp="1589733216062">
+    <state width="1345" height="106" key="GridCell.Tab.0.center/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589741387571" />
+    <state width="1345" height="106" key="GridCell.Tab.0.left" timestamp="1589741387571">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="211" key="GridCell.Tab.0.left/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589733216062" />
-    <state width="1345" height="211" key="GridCell.Tab.0.right" timestamp="1589733216062">
+    <state width="1345" height="106" key="GridCell.Tab.0.left/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589741387571" />
+    <state width="1345" height="106" key="GridCell.Tab.0.right" timestamp="1589741387571">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="211" key="GridCell.Tab.0.right/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589733216062" />
+    <state width="1345" height="106" key="GridCell.Tab.0.right/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589741387571" />
     <state x="379" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1589712798057">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
