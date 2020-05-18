@@ -3,46 +3,49 @@ from threading import *
 import time;
 from Classes import *
 from socket import *
+from Utils import *
 
 userName = "ivan";
-
-
-def SendToServer(data):
-    s = socket();
-    s.connect(("127.0.0.1", 5000));
-    s.send(data.ToString().encode());
-    s.close();
 
 
 def GetDataFromServer():
     s = socket();
     s.connect(("127.0.0.1", 5000));
-    s.send(Message("","LOGIN",userName,"server",userName).ToString().encode());
+    s.send(Message("", "LOGIN", userName, "server", userName).ToString().encode());
     while True:
         msg = Message(s.recv(1024).decode());
         if msg.request == 'PLAYERINFO':
             if msg.sender in remotePlayers:
                 remotePlayers[msg.sender].Update(msg);
             else:
-                remotePlayers[msg.sender] = RemotePlayer(canvas,msg);
+                remotePlayers[msg.sender] = RemotePlayer(canvas, msg);
+                remotePlayers[msg.sender].Update(msg);
         elif msg.request == 'BULLETINFO':
             for r in remoteBullets:
                 if not r.draw:
                     r.Reset(msg);
                     break;
+        elif msg.request == 'BULLETHIT':
+            for r in remoteBullets:
+                if r.id == msg.data:
+                    r.Disable();
+            if msg.sender == Player.name:
+                player.TakeDamage(10);
+            else:
+                remotePlayers[msg.sender].TakeDamage(10);
 
 
 def GameLoop():
     while True:
         time.sleep(0.04);
         player.Update(pressedKeys);
-        for r in remoteBullets:
-            r.Update();
+        if player.change:
+            SendToServer(player.Serialize());
         if player.bulletSend != "":
             SendToServer(Message(player.bulletSend));
             player.bulletSend = "";
-        if player.change:
-            SendToServer(player.Serialize());
+        for r in remoteBullets:
+            r.Update();
 
 
 def KeyDown(event):
@@ -55,6 +58,10 @@ def KeyUp(event):
         pressedKeys.pop(event.char);
 
 
+def StartGame():
+    gameFrame.pack();
+
+
 pressedKeys = dict();
 allowedCommands = ('w', 'a', 's', 'd', ' ');
 
@@ -62,13 +69,18 @@ root = Tk();
 root.bind("<KeyRelease>", KeyUp);
 root.bind("<KeyPress>", KeyDown);
 
-canvas = Canvas(root, width=sizeX, height=sizeY, bg='yellow')
+gameFrame = Frame(root);
+canvas = Canvas(gameFrame, width=sizeX, height=sizeY, bg='yellow')
 canvas.pack()
 
-player = Player(userName, canvas);
-RemotePlayer.SetRemotePlayerImages();
+b = Button(root, text='StartGame', command=StartGame);
+b.pack();
 
+RemotePlayer.SetRemotePlayerImages();
 remotePlayers = dict();
+RemotePlayer.remotePlayers = remotePlayers;
+
+player = Player(userName, canvas);
 
 remoteBullets = [];
 for i in range(0, 20):

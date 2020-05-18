@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95d4b57a-e7ee-4a42-b063-717642baa014" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game4.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +42,7 @@
       <recent name="C:\Users\Bojan\PycharmProjects\TankGame" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Game4">
+  <component name="RunManager" selected="Python.Game2">
     <configuration name="Game" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TankGame" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -146,11 +150,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Game4" />
-        <item itemvalue="Python.Game3" />
         <item itemvalue="Python.Game2" />
         <item itemvalue="Python.Game" />
         <item itemvalue="Python.server" />
+        <item itemvalue="Python.Game4" />
+        <item itemvalue="Python.Game3" />
       </list>
     </recent_temporary>
   </component>
@@ -172,29 +176,29 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="449" y="167" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589751389589" />
-    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1589751098158">
+    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1589791285455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589751098158" />
-    <state width="1345" height="175" key="GridCell.Tab.0.bottom" timestamp="1589754379442">
+    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589791285455" />
+    <state width="1345" height="118" key="GridCell.Tab.0.bottom" timestamp="1589834021697">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="175" key="GridCell.Tab.0.bottom/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589754379442" />
-    <state width="1345" height="175" key="GridCell.Tab.0.center" timestamp="1589754379442">
+    <state width="1345" height="118" key="GridCell.Tab.0.bottom/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589834021697" />
+    <state width="1345" height="118" key="GridCell.Tab.0.center" timestamp="1589834021697">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="175" key="GridCell.Tab.0.center/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589754379442" />
-    <state width="1345" height="175" key="GridCell.Tab.0.left" timestamp="1589754379442">
+    <state width="1345" height="118" key="GridCell.Tab.0.center/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589834021697" />
+    <state width="1345" height="118" key="GridCell.Tab.0.left" timestamp="1589834021697">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="175" key="GridCell.Tab.0.left/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589754379442" />
-    <state width="1345" height="175" key="GridCell.Tab.0.right" timestamp="1589754379442">
+    <state width="1345" height="118" key="GridCell.Tab.0.left/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589834021697" />
+    <state width="1345" height="118" key="GridCell.Tab.0.right" timestamp="1589834021697">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="175" key="GridCell.Tab.0.right/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589754379442" />
-    <state x="379" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1589712798057">
+    <state width="1345" height="118" key="GridCell.Tab.0.right/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589834021697" />
+    <state x="379" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1589834558715">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589712798057" />
+    <state x="379" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589834558715" />
   </component>
 </project>

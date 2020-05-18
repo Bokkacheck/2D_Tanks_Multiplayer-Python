@@ -25,24 +25,35 @@ def GetDataFromServer():
                 remotePlayers[msg.sender].Update(msg);
             else:
                 remotePlayers[msg.sender] = RemotePlayer(canvas,msg);
+                remotePlayers[msg.sender].Update(msg);
         elif msg.request == 'BULLETINFO':
             for r in remoteBullets:
                 if not r.draw:
                     r.Reset(msg);
                     break;
+        elif msg.request == 'BULLETHIT':
+            for r in remoteBullets:
+                if r.id == msg.data:
+                    r.Disable();
+            if msg.sender == Player.name:
+                player.TakeDamage(10);
+            else:
+                remotePlayers[msg.sender].TakeDamage(10);
+
+
 
 
 def GameLoop():
     while True:
         time.sleep(0.04);
         player.Update(pressedKeys);
-        for r in remoteBullets:
-            r.Update();
+        if player.change:
+            SendToServer(player.Serialize());
         if player.bulletSend != "":
             SendToServer(Message(player.bulletSend));
             player.bulletSend = "";
-        if player.change:
-            SendToServer(player.Serialize());
+        for r in remoteBullets:
+            r.Update();
 
 
 def KeyDown(event):
@@ -65,10 +76,11 @@ root.bind("<KeyPress>", KeyDown);
 canvas = Canvas(root, width=sizeX, height=sizeY, bg='yellow')
 canvas.pack()
 
-player = Player(userName, canvas);
 RemotePlayer.SetRemotePlayerImages();
-
 remotePlayers = dict();
+RemotePlayer.remotePlayers = remotePlayers;
+
+player = Player(userName, canvas);
 
 remoteBullets = [];
 for i in range(0, 20):

@@ -1,8 +1,18 @@
 import math;
+from socket import *;
 
 
-def CentredCircle(x, y, r=100):
-    return x + r / 2, y + r / 2, x - r / 2, y - r / 2
+def SendToServer(data):
+    s = socket();
+    s.connect(("127.0.0.1", 5000));
+    s.send(data.ToString().encode());
+    s.close();
+
+
+def CenterToCoords(x, y, w=100, h=-1):
+    if h == -1:
+        h = w;
+    return x + w / 2, y + h / 2, x - w / 2, y - h / 2
 
 
 class V2:
@@ -12,10 +22,13 @@ class V2:
         self.y = y;
 
     def LengthTo(self, sec):
-        return math.sqrt(pow(self.x - sec.x) + pow(self.y - sec.y));
+        return math.sqrt(pow((self.x - sec.x), 2) + pow((self.y - sec.y), 2));
 
     def AsArgs(self):
         return self.x, self.y;
+
+    def __neg__(self):
+        return V2(-self.x, -self.y);
 
     def __add__(self, other):
         return V2(self.x + other.x, self.y + other.y)
@@ -44,3 +57,7 @@ class V2:
 
 
 zeroVec = V2(0, 0);
+
+
+def CoordsToCenter(x,y,x1,y1):
+    return V2((x+x)/2, (y+y1)/2);
