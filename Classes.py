@@ -7,6 +7,18 @@ sizeY = 680;
 angleOffset = 90;  # Slike pocinju uspravno
 
 
+class PlayerData:
+    def __init__(self, name, maxHealth, kills, deaths, health = -1):
+        if health == -1:
+            health = maxHealth;
+        self.name = name;
+        self.maxHealth = int(maxHealth);
+        self.kills = int(kills);
+        self.deaths = int(deaths);
+        self.health = int(health)
+
+    def Serialize(self):
+        return self.name + ":"+str(self.maxHealth)+":"+str(self.kills)+":"+str(self.deaths)+":"+str(self.health);
 
 
 class Message:
@@ -37,36 +49,33 @@ class Player:
         for i in range(0, 36):
             Player.playerImages.append(PhotoImage(file='playerRotated/' + str(i) + '.png'));
 
-    def __init__(self, name, canvas):
-        if name == "":
-            return
-        self.name = name;
-        self.maxHealth = 100;
+    def __init__(self, msg, canvas):
+        data = msg.data.split(":");
+        pos = msg.reciever.split(":");
+        self.data = PlayerData(data[0], data[1], data[2], data[3], data[4]);
         self.size = 55;
         self.speed = 10;
-        self.angle = 0;
         self.bullets = [];
         self.rateOfFire = 5;
         self.rateCounter = 0;
         self.movement = zeroVec;
-        self.pos = zeroVec;
         for i in range(0, 5):
-            self.bullets.append(Bullet(self.name, canvas))
-        self.health = self.maxHealth;
+            self.bullets.append(Bullet(self.data.name, canvas))
         self.canvas = canvas;
-        self.pos = V2(random.randint(self.size, sizeX - self.size), random.randint(self.size, sizeY - self.size))
+        self.pos = V2(int(pos[0]), int(pos[1]));
+        self.angle = int(pos[2]);
         self.image = self.canvas.create_image(self.pos.AsArgs(), image=Player.playerImages[0]);
         self.change = False;
         self.coliderCounter = -1;
         self.bulletSend = "";
-        self.healthBar = HealtBar(self.name,self.maxHealth, self.pos, self.canvas);
+        self.healthBar = HealtBar(self.data.name, self.data.maxHealth,self.data.health, self.pos, self.canvas);
 
-    def TakeDamage(self, amount):
-        self.health -= amount;
-        if self.health <= 0:
-            SendToServer(Message("", "PLAYERDEATT", self.name, "all", self.name))
-            self.health = self.maxHealth;
-        self.healthBar.Change(self.health)
+    def TakeDamage(self, amount, shooter=""):
+        self.data.health -= amount;
+        if self.data.health <= 0:
+            SendToServer(Message("", "PLAYERDEATH", self.data.name, "", shooter))
+            self.data.health = self.data.maxHealth;
+        self.healthBar.Change(self.data.health)
 
     def Update(self, pressedKeys):
         self.change = False;
@@ -147,8 +156,13 @@ class Player:
                     return
 
     def Serialize(self):
-        return Message("", "PLAYERINFO", self.name, "",
+        return Message("", "PLAYERINFO", self.data.name, "",
                        str(self.pos.x) + ":" + str(self.pos.y) + ":" + str(self.angle))
+
+    def GetInfoForNewPlayers(self):
+        print(self.data.Serialize());
+        return Message("", "NOTIFY", self.data.name, str(self.pos.x) + ":"
+                       + str(self.pos.y) + ":"+str(self.angle), self.data.Serialize());
 
 
 class Bullet:
@@ -189,7 +203,7 @@ class Bullet:
         for rp in RemotePlayer.remotePlayers.values():
             distance = self.pos.LengthTo(rp.pos);
             if distance <= radius:
-                SendToServer(Message("", "BULLETHIT", rp.name, "all", self.id))
+                SendToServer(Message("", "BULLETHIT", rp.data.name, "all", self.id))
                 self.canvas.delete(self.circle);
                 self.draw = False;
                 return True;
@@ -212,26 +226,24 @@ class RemotePlayer:
         for i in range(0, 36):
             RemotePlayer.remotePlayerImages.append(PhotoImage(file='remoteRotated/' + str(i) + '.png'));
 
-    def __init__(self, canvas, msg):
-        self.name = msg.sender;
+    def __init__(self, msg, canvas):
+        data = msg.data.split(":");
+        pos = msg.reciever.split(":");
+        self.data = PlayerData(data[0], data[1], data[2], data[3],data[4]);
+        self.pos = V2(float(pos[0]), float(pos[1]));
         self.changePos = False;
         self.changeAngle = False;
-        self.pos = zeroVec;
-        self.angle = 0;
+        self.angle = int(pos[2]);
         self.canvas = canvas;
-        self.bullets = [];
         self.movement = zeroVec;
-        self.health = 100;
-        self.maxHealth = 100;
-        self.Set(msg);
-        self.image = self.canvas.create_image(self.pos.AsArgs(), image=RemotePlayer.remotePlayerImages[0]);
-        self.healthBar = HealtBar(self.name,self.maxHealth, self.pos, self.canvas);
+        self.image = self.canvas.create_image(self.pos.AsArgs(), image=RemotePlayer.remotePlayerImages[self.angle]);
+        self.healthBar = HealtBar(self.data.name, self.data.maxHealth,self.data.health, self.pos, self.canvas);
 
     def TakeDamage(self, amount):
-        self.health -= amount;
-        if self.health <= 0:
-            self.health = 100;
-        self.healthBar.Change(self.health);
+        self.data.health -= amount;
+        if self.data.health <= 0:
+            self.data.health = self.data.maxHealth;
+        self.healthBar.Change(self.data.health);
 
     def Update(self, txt):
         self.Set(txt);
@@ -289,8 +301,11 @@ class RemoteBullet:
     def Reset(self, msg):
         data = msg.data.split(":");
         self.id = data[4];
-        self.pos = V2(float(data[0]), float(data[1]));
-        self.movement = V2(float(data[2]), float(data[3]));
+        try:
+            self.pos = V2(float(data[0]), float(data[1]));
+            self.movement = V2(float(data[2]), float(data[3]));
+        except ValueError:
+            return;
         coord = CenterToCoords(self.pos.x, self.pos.y, 10);
         self.circle = self.canvas.create_oval(coord, fill=self.color);
         self.draw = True;
@@ -310,13 +325,14 @@ class RemoteBullet:
 
 class HealtBar:
 
-    def __init__(self, name, maxHealth, pos, canvas):
+    def __init__(self, name, maxHealth,health, pos, canvas):
+        size = health / maxHealth * 100;
         self.maxHealth = maxHealth
         self.canvas = canvas;
         self.back = canvas.create_rectangle(CenterToCoords(pos.x, pos.y - 55, 100, 15), fill='tomato')
-        self.front = canvas.create_rectangle(CenterToCoords(pos.x, pos.y - 55, 100, 13), fill='red')
+        self.front = canvas.create_rectangle(CenterToCoords(pos.x - (100 - size)/2, pos.y - 55, size,13), fill='red')
         self.text = canvas.create_text(pos.x, pos.y - 55, fill="white", font="Times 13 bold",
-                                       text=str(self.maxHealth) + "/" + str(self.maxHealth));
+                                       text=str(health) + "/" + str(self.maxHealth));
         self.txtName = canvas.create_text(pos.x, pos.y - 80, fill="black", font="Times 13 bold", text=name);
         self.pos = V2(pos.x, pos.y);
 
@@ -328,7 +344,8 @@ class HealtBar:
         self.canvas.move(self.txtName, move.x, move.y);
 
     def Change(self, amount):
-        cords = CenterToCoords(self.pos.x - (self.maxHealth - amount) / 2, self.pos.y - 55, amount, 13);
+        size = amount / self.maxHealth * 100;
+        cords = CenterToCoords(self.pos.x - (100 - size) / 2, self.pos.y - 55, size, 13);
         self.canvas.coords(self.front, cords);
         self.canvas.itemconfig(self.text, text=str(amount) + "/" + str(self.maxHealth))
 

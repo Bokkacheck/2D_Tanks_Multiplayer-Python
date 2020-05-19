@@ -8,24 +8,8 @@
       <change beforePath="$PROJECT_DIR$/Game2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game4.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageRotation.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/512 x 512 b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/512 x 512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/TANK 2D player 2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/TANK 2D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/cover.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/file edit.ai" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/file editable.ai" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/gif/1 b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/gif/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/gif/2 b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/gif/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/gif/3 b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all file 2D Tanks/gif/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/playerTank.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/small.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +45,7 @@
       <recent name="C:\Users\Bojan\PycharmProjects\TankGame" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Game2">
+  <component name="RunManager" selected="Python.Game4">
     <configuration name="Game" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TankGame" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -169,11 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Game2" />
+        <item itemvalue="Python.Game4" />
         <item itemvalue="Python.Game" />
+        <item itemvalue="Python.Game2" />
         <item itemvalue="Python.Game3" />
         <item itemvalue="Python.server" />
-        <item itemvalue="Python.Game4" />
       </list>
     </recent_temporary>
   </component>
@@ -199,25 +183,25 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589791285455" />
-    <state width="1345" height="123" key="GridCell.Tab.0.bottom" timestamp="1589912871580">
+    <state width="1345" height="287" key="GridCell.Tab.0.bottom" timestamp="1589930009496">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="123" key="GridCell.Tab.0.bottom/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589912871580" />
+    <state width="1345" height="287" key="GridCell.Tab.0.bottom/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589930009496" />
     <state width="1345" height="245" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589894014676" />
-    <state width="1345" height="123" key="GridCell.Tab.0.center" timestamp="1589912871580">
+    <state width="1345" height="287" key="GridCell.Tab.0.center" timestamp="1589930009496">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="123" key="GridCell.Tab.0.center/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589912871580" />
+    <state width="1345" height="287" key="GridCell.Tab.0.center/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589930009496" />
     <state width="1345" height="245" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1589894014676" />
-    <state width="1345" height="123" key="GridCell.Tab.0.left" timestamp="1589912871580">
+    <state width="1345" height="287" key="GridCell.Tab.0.left" timestamp="1589930009496">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="123" key="GridCell.Tab.0.left/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589912871580" />
+    <state width="1345" height="287" key="GridCell.Tab.0.left/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589930009496" />
     <state width="1345" height="245" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1589894014676" />
-    <state width="1345" height="123" key="GridCell.Tab.0.right" timestamp="1589912871580">
+    <state width="1345" height="287" key="GridCell.Tab.0.right" timestamp="1589930009496">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="123" key="GridCell.Tab.0.right/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589912871580" />
+    <state width="1345" height="287" key="GridCell.Tab.0.right/0.0.1366.728/-1680.0.1680.1010@0.0.1366.728" timestamp="1589930009496" />
     <state width="1345" height="245" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1589894014676" />
     <state x="379" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1589893907806">
       <screen x="0" y="0" width="1366" height="728" />

@@ -3,15 +3,21 @@ from threading import *
 from Classes import *
 from Utils import *
 
+
 def GetDataFromServer(sock):
     while game:
         msg = Message(sock.recv(1024).decode());
-        if msg.request == 'PLAYERINFO':
+        if msg.request == 'NEWPLAYER':
+            remotePlayers[msg.sender] = RemotePlayer(msg, canvas);
+            SendToServer(player.GetInfoForNewPlayers());
+        elif msg.request == 'NOTIFY':
+            if msg.sender not in remotePlayers:
+                remotePlayers[msg.sender] = RemotePlayer(msg, canvas);
+        elif msg.request == 'PLAYERINFO':
             if msg.sender in remotePlayers:
                 remotePlayers[msg.sender].Update(msg);
             else:
-                remotePlayers[msg.sender] = RemotePlayer(canvas, msg);
-                remotePlayers[msg.sender].Update(msg);
+                remotePlayers
         elif msg.request == 'BULLETINFO':
             for r in remoteBullets:
                 if not r.draw:
@@ -21,16 +27,17 @@ def GetDataFromServer(sock):
             for r in remoteBullets:
                 if r.id == msg.data:
                     r.Disable();
-            if msg.sender == player.name:
+            if msg.sender == player.data.name:
                 player.TakeDamage(10);
             else:
                 remotePlayers[msg.sender].TakeDamage(10);
         elif msg.request == 'LOGOUT':
-            if msg.sender == player.name:
+            if msg.sender == player.data.name:
                 sock.close();
                 break;
             else:
                 del remotePlayers[msg.sender];
+
 
 def GameLoop():
     while game:
@@ -44,13 +51,16 @@ def GameLoop():
         for r in remoteBullets:
             r.Update();
 
+
 def KeyDown(event):
     if event.char in allowedCommands:
         pressedKeys[event.char] = True;
 
+
 def KeyUp(event):
     if event.char in pressedKeys:
         pressedKeys.pop(event.char);
+
 
 def Login():
     global player, game, userName;
@@ -62,30 +72,34 @@ def Login():
         sock.close();
         return;
     else:
-        GameInit();
+        print(msg.ToString())
+        GameInit(msg);
         game = True;
         getDataFromServer = Thread(target=GetDataFromServer, args=(sock,));
         getDataFromServer.start();
         gameLoop = Thread(target=GameLoop);
         gameLoop.start();
 
+
 def Logout():
     global userName, game;
-    SendToServer(Message("", "LOGOUT", player.name, "", ""));
+    SendToServer(Message("", "LOGOUT", player.data.name, "", ""));
     game = False;
     userName = StringVar();
     gameFrame.pack_forget();
     MakeLogInEnvirnomet();
 
-def GameInit():
+
+def GameInit(msg):
     MakeGameEnvirnoment();
     global player, remoteBullets, remotePlayers;
-    player = Player(userName.get(), canvas);
+    player = Player(msg, canvas);
     remotePlayers = dict();
     RemotePlayer.remotePlayers = remotePlayers;
     remoteBullets = [];
     for i in range(0, 20):
         remoteBullets.append(RemoteBullet(canvas));
+
 
 def MakeGameEnvirnoment():
     global gameFrame, canvas, loginFrame
@@ -95,6 +109,7 @@ def MakeGameEnvirnoment():
     canvas.pack()
     loginFrame.pack_forget();
     gameFrame.pack();
+
 
 def MakeLogInEnvirnomet():
     global userName, password, loginFrame;
@@ -106,13 +121,15 @@ def MakeLogInEnvirnomet():
     Button(loginFrame, text='Login', command=Login).pack();
     loginFrame.pack();
 
+
 def OnExit():
     global game;
     if game:
-        SendToServer(Message("", "LOGOUT", player.name, "", ""));
+        SendToServer(Message("", "LOGOUT", player.data.name, "", ""));
         game = False;
         time.sleep(0.1);  # daj vremena da se unisti sva memorija iz threadova
-        root.destroy();
+    root.destroy();
+
 
 game = False;
 player = None;
@@ -128,6 +145,7 @@ pressedKeys = dict();
 allowedCommands = ('w', 'a', 's', 'd', ' ');
 
 root = Tk();
+root.minsize(300,300);
 Player.SetPlayerImages();
 RemotePlayer.SetRemotePlayerImages();
 root.bind("<KeyRelease>", KeyUp);

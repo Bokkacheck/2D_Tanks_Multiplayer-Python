@@ -1,6 +1,10 @@
 import math;
 from socket import *;
+import random;
 
+playerSize = 55;
+sizeX = 1280;
+sizeY = 680;
 
 def SendToServer(data):
     s = socket();
@@ -8,6 +12,8 @@ def SendToServer(data):
     s.send(data.ToString().encode());
     s.close();
 
+def RandomV2():
+    return V2(random.randint(playerSize, sizeX - playerSize), random.randint(playerSize, sizeY - playerSize));
 
 def CenterToCoords(x, y, w=100, h=-1):
     if h == -1:
