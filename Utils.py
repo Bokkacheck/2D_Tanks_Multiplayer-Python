@@ -14,7 +14,6 @@ def CenterToCoords(x, y, w=100, h=-1):
         h = w;
     return x + w / 2, y + h / 2, x - w / 2, y - h / 2
 
-
 class V2:
 
     def __init__(self, x, y):
