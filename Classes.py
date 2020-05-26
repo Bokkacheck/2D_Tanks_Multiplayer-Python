@@ -8,7 +8,7 @@ angleOffset = 90;  # Slike pocinju uspravno
 
 
 class PlayerData:
-    def __init__(self, name, maxHealth, kills, deaths, health = -1):
+    def __init__(self, name, maxHealth, kills, deaths, health=-1):
         if health == -1:
             health = maxHealth;
         self.name = name;
@@ -52,6 +52,8 @@ class Player:
     def __init__(self, msg, canvas):
         data = msg.data.split(":");
         pos = msg.reciever.split(":");
+        self.kills = None;
+        self.deaths = None;
         self.data = PlayerData(data[0], data[1], data[2], data[3], data[4]);
         self.size = 55;
         self.speed = 10;
@@ -67,12 +69,13 @@ class Player:
         self.image = self.canvas.create_image(self.pos.AsArgs(), image=Player.playerImages[0]);
         self.change = False;
         self.coliderCounter = -1;
-        self.bulletSend = "";
         self.healthBar = HealtBar(self.data.name, self.data.maxHealth,self.data.health, self.pos, self.canvas);
 
     def TakeDamage(self, amount, shooter=""):
         self.data.health -= amount;
         if self.data.health <= 0:
+            self.data.deaths+=1;
+            self.deaths.set("Deaths: "+str(self.data.deaths));
             SendToServer(Message("", "PLAYERDEATH", self.data.name, "", shooter))
             self.data.health = self.data.maxHealth;
         self.healthBar.Change(self.data.health)
@@ -152,7 +155,7 @@ class Player:
             for b in self.bullets:
                 if not b.draw:
                     b.Reset(self.pos, self.angle);
-                    self.bulletSend = b.Serialize().ToString();
+                    SendToServer(b.Serialize());
                     return
 
     def Serialize(self):
@@ -160,7 +163,6 @@ class Player:
                        str(self.pos.x) + ":" + str(self.pos.y) + ":" + str(self.angle))
 
     def GetInfoForNewPlayers(self):
-        print(self.data.Serialize());
         return Message("", "NOTIFY", self.data.name, str(self.pos.x) + ":"
                        + str(self.pos.y) + ":"+str(self.angle), self.data.Serialize());
 
