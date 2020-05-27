@@ -77,8 +77,8 @@ def GetDataFromDatabase():
         players = list(map(lambda x: PlayerData(*x), cursor.fetchall()))
     except:
         # Ako dodje do problema sa bazom da postoje hardkodovani igraci radi probe
-        players = [PlayerData("bojannrt417", 100, 0, 0), PlayerData("milovannrt1117", 100, 0, 0),
-                   PlayerData("nikolanrt617", 100, 0, 0),
+        players = [PlayerData("bojannrt417", 100, 0, 0), PlayerData("ivan", 100, 0, 0),
+                   PlayerData("Snake97", 100, 0, 0),
                    PlayerData("username", 100, 0, 0)];
         print("Error with database")
     db.close();
