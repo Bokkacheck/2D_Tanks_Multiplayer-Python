@@ -1,0 +1,16 @@
+U okviru projekta se nalaze i potrbni resursi kako bi igra mogla da radi,
+što uključuje slike i exportovanu bazu u vidu SQL fajla.
+
+Potrebno je prvo pokrenuti server a nakon toga i klijente (Game.py, Game2.py ...)
+
+Za logovanje je dovoljno samo uneti ime igrača, ukoliko igrač ne postoji u bazi kreiraće se novi igrač.
+
+Predefinasini igraču su: bojannrt417, Snake97, ivan
+
+U okviru projekta šaljem i video snimak kako aplikacija radi.
+
+
+Komande u igri: w a s d -> kretanje
+		space -> pucanje
+
+
